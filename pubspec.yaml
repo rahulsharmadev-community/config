@@ -1,0 +1,19 @@
+name: config
+description: Config is just basic flutter utitliy.
+version: 0.0.1
+homepage: 'config'
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  logger: ^1.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+flutter:
