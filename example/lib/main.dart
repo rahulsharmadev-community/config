@@ -4,9 +4,7 @@ import 'package:example/screen/third_page.dart';
 import 'package:flutter/material.dart';
 import 'package:config/config.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -29,7 +27,4 @@ class MyApp extends StatelessWidget {
           //...
         }).onGenerater);
   }
-
-  MaterialPageRoute<dynamic> _buildRoute(child, RouteSettings settings) =>
-      MaterialPageRoute(builder: (_) => child, settings: settings);
 }

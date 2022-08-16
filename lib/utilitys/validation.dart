@@ -13,7 +13,7 @@ class Validation {
   /// Mobile Exception has only 10 digits from 0 to 9.
   static final mobilenoExp = RegExp(r'[0-9]{10}');
 
-  /// Mobile Exception has only 10 digits from 0 to 9.
+  /// Alphabeat Exception is contain all alphabeats a-z, A-Z.
   static final alphabeatExp = RegExp(r'^[a-zA-Z]+$');
 
   static String? email(String? text, {String? errorMsg}) {
@@ -21,8 +21,8 @@ class Validation {
     return value || text!.isEmpty
         ? null
         : !value
-        ? errorMsg ?? 'Invalid Email-Id'
-        : null;
+            ? errorMsg ?? 'Invalid Email-Id'
+            : null;
   }
 
   static String? username(String? text, {String? errorMsg}) {
@@ -30,8 +30,8 @@ class Validation {
     return value || text!.isEmpty
         ? null
         : !value
-        ? errorMsg ?? 'Invalid Username'
-        : null;
+            ? errorMsg ?? 'Invalid Username'
+            : null;
   }
 
   static String? number(String? text, {String? errorMsg}) {
@@ -39,8 +39,8 @@ class Validation {
     return value || text!.isEmpty
         ? null
         : !value
-        ? errorMsg ?? 'Invalid Number'
-        : null;
+            ? errorMsg ?? 'Invalid Number'
+            : null;
   }
 
   static String? mobileNo(String? text, {String? errorMsg}) {
@@ -48,8 +48,8 @@ class Validation {
     return value || text!.isEmpty
         ? null
         : !value
-        ? errorMsg ?? 'Invalid Mobile Number'
-        : null;
+            ? errorMsg ?? 'Invalid Mobile Number'
+            : null;
   }
 
   static String? alphabeat(String? text, {String? errorMsg}) {
@@ -57,7 +57,7 @@ class Validation {
     return value || text!.isEmpty
         ? null
         : !value
-        ? errorMsg ?? 'Only Use alphabeat'
-        : null;
+            ? errorMsg ?? 'Only Use alphabeat'
+            : null;
   }
 }

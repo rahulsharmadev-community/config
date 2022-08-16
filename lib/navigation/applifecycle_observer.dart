@@ -2,19 +2,17 @@ import 'dart:async' show StreamController;
 import 'package:config/config.dart' show printLog, LogType;
 import 'package:flutter/material.dart';
 
-class ConfigAppLifecycleObserver extends StatefulWidget {
+class AppLifecycleObserver extends StatefulWidget {
   final Widget child;
   static final StreamController<AppLifecycleState> _controller =
       StreamController<AppLifecycleState>();
   static Stream<AppLifecycleState> get stream => _controller.stream;
-  const ConfigAppLifecycleObserver({required this.child, Key? key})
-      : super(key: key);
+  const AppLifecycleObserver({required this.child, Key? key}) : super(key: key);
   @override
-  State<ConfigAppLifecycleObserver> createState() =>
-      _ConfigAppLifecycleObserverState();
+  State<AppLifecycleObserver> createState() => _AppLifecycleObserverState();
 }
 
-class _ConfigAppLifecycleObserverState extends State<ConfigAppLifecycleObserver>
+class _AppLifecycleObserverState extends State<AppLifecycleObserver>
     with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
@@ -24,13 +22,13 @@ class _ConfigAppLifecycleObserverState extends State<ConfigAppLifecycleObserver>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     printLog('didChangeAppLifecycleState: $state', logType: LogType.info);
-    ConfigAppLifecycleObserver._controller.sink.add(state);
+    AppLifecycleObserver._controller.sink.add(state);
   }
 
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    ConfigAppLifecycleObserver._controller.close();
+    AppLifecycleObserver._controller.close();
     super.dispose();
   }
 
