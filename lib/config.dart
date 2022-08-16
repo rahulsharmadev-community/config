@@ -1,13 +1,11 @@
 library config;
 
-import 'dart:html';
-
 import 'package:flutter/material.dart'
     show ScaffoldMessengerState, NavigatorState, GlobalKey, MaterialPageRoute;
 import 'package:flutter/widgets.dart';
-import 'utilitys/printlog.dart';
-export 'package:config/utilitys/printlog.dart';
-
+import 'utilities/printlog.dart';
+export 'utilities/utilities.dart';
+export 'widgets/widgets.dart';
 part 'navigation/navigator_observer.dart';
 part 'navigation/route.dart';
 
