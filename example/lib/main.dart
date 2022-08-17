@@ -19,12 +19,12 @@ class MyApp extends StatelessWidget {
         scaffoldMessengerKey: Config.messengerKey,
         navigatorObservers: [Config.navigatorObserver],
         initialRoute: FirstPage.name,
-        onGenerateRoute: Config.routes({
-          FirstPage.name: FirstPage(/*settings.arguments*/),
-          SecondPage.name: SecondPage(/*settings.arguments*/),
-          ThirdPage.name: ThirdPage(/*settings.arguments*/)
-          //.....
-          //...
-        }).onGenerater);
+        onGenerateRoute: (settings) => Config.routeGenerater(settings, routes: {
+              FirstPage.name: FirstPage(/*settings.arguments*/),
+              SecondPage.name: SecondPage(/*settings.arguments*/),
+              ThirdPage.name: ThirdPage(/*settings.arguments*/)
+              //.....
+              //...
+            }));
   }
 }

@@ -7,11 +7,14 @@ import 'utilities/printlog.dart';
 export 'utilities/utilities.dart';
 export 'widgets/widgets.dart';
 part 'navigation/navigator_observer.dart';
-part 'navigation/route.dart';
 
 ScaffoldMessengerState get messenger => Config.messengerKey.currentState!;
 
 NavigatorState get navigation => Config.navigatorKey.currentState!;
+
+MaterialPageRoute<dynamic> buildMaterialPageRoute(
+        child, RouteSettings settings) =>
+    MaterialPageRoute(builder: (_) => child, settings: settings);
 
 class Config {
   /// Use to indicate that the app is in debug mode.
@@ -42,14 +45,31 @@ class Config {
 
   /// ## How to use
   /// ```
-  /// Config.routes({
-  ///        FirstPage.name: FirstPage(/*settings.arguments*/),
-  ///         SecondPage.name: SecondPage(/*settings.arguments*/),
-  ///         ThirdPage.name: ThirdPage(/*settings.arguments*/)
-  ///        //...
-  ///     }).onGenerater
+  /// onGenerateRoute: (settings) =>
+  ///           Config.routeGenerater(settings, routes: {
+  ///             FirstPage.name: FirstPage(/*settings.arguments*/),
+  ///             SecondPage.name: SecondPage(/*settings.arguments*/),
+  ///            ThirdPage.name: ThirdPage(/*settings.arguments*/)
+  ///             //.....
+  ///             //...
+  ///           });
   /// ```
   /// Use the "error404" parameter when the page cannot be found
-  static routes(Map<String, Widget> routes, {Widget? error404}) =>
-      _ConfigRoute(routes, error404: error404);
+  static MaterialPageRoute<dynamic> routeGenerater(RouteSettings settings,
+          {required Map<String, Widget> routes,
+
+          /// When Page not found
+          Widget? error404}) =>
+      buildMaterialPageRoute(
+          routes.entries.firstWhere((element) => element.key == settings.name,
+              orElse: () {
+            return MapEntry(
+                'Unknown',
+                error404 ??
+                    Center(
+                        child: DefaultTextStyle(
+                            style: TextStyle(),
+                            child: Text('Page Not Found'))));
+          }).value,
+          settings);
 }
