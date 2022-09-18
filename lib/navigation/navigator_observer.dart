@@ -21,7 +21,7 @@ class _ConfigNavigatorObserver extends NavigatorObserver {
 
     if (_isRouteLocation)
       text +=
-          'Route Location: /${_routeHistory.toString().replaceAll(', ', '/').replaceAll(RegExp(r'[\[\]]'), '')}';
+          'Route Location: /${_routeHistory.toString().replaceAll(RegExp(r',|\]|\['), '')}';
 
     if (_isOperation) text += '\nOperation: $operation';
     if (_isAttributes)

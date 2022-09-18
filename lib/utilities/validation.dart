@@ -15,16 +15,16 @@ class _RegExpData {
 
 class Validation {
   final RegExpType _regExpType;
-  final String? _errorMsg;
-  Validation(RegExpType regExpType, {String? errorMsg})
-      : _errorMsg = errorMsg,
-        _regExpType = regExpType;
+  final int min;
+  final int? max;
+  final String? errorMsg;
+  Validation(RegExpType regExpType, {this.errorMsg, this.min = 0, this.max})
+      : _regExpType = regExpType;
 
   static const Map<RegExpType, _RegExpData> regExpLibrary = {
     /// Username Exception must contain 8-16 character
     RegExpType.usernameRegExp: _RegExpData(
-        regExpSyntax: r'[a-zA-Z0-9@\_\-\.]{8,16}',
-        errorMsg: 'Invalid Username'),
+        regExpSyntax: r'[a-zA-Z0-9@\_\-\.]*$', errorMsg: 'Invalid Username'),
 
     /// Email Exception must ba a patten like rahul@gmail.com
     RegExpType.emailRegExp: _RegExpData(
@@ -38,7 +38,7 @@ class Validation {
 
     /// Mobile Exception has only 10 digits from 0 to 9.
     RegExpType.mobilenoRegExp: _RegExpData(
-        regExpSyntax: r'^[0-9]{10}+$', errorMsg: 'Invalid Mobile Number'),
+        regExpSyntax: r'^[0-9]+$', errorMsg: 'Invalid Mobile Number'),
 
     /// Alphabeat Exception is contain all alphabeats a-z, A-Z.
     RegExpType.alphabeatRegExp: _RegExpData(
@@ -47,7 +47,7 @@ class Validation {
 
     /// Password Exception is contain ?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
     RegExpType.passwordRegExp: _RegExpData(
-        regExpSyntax: r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$',
+        regExpSyntax: r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$',
         errorMsg: 'Invalid Password Found')
   };
 
@@ -55,9 +55,18 @@ class Validation {
     final _temp =
         regExpLibrary.entries.singleWhere((e) => e.key == _regExpType).value;
 
-    return RegExp(_temp.regExpSyntax).hasMatch(text ?? '')
-        ? null
-        : _errorMsg ?? _temp.errorMsg;
+    if (text!.isEmpty) {
+      return null;
+    } else {
+      if (!RegExp(_temp.regExpSyntax).hasMatch(text))
+        return errorMsg ?? _temp.errorMsg;
+
+      if (text.length < min) return 'Too short';
+
+      if (max != null && text.length > max!) return 'Too large';
+
+      return null;
+    }
   }
 
   @override
@@ -67,7 +76,7 @@ class Validation {
     return 'RegExpType: ' +
         _regExpType.name +
         'ErrorMsg: ' +
-        (_errorMsg ??
+        (errorMsg ??
             regExpLibrary.entries
                 .singleWhere((e) => e.key == _regExpType)
                 .value
