@@ -19,6 +19,7 @@ void printLog(Object? message,
     printer: PrettyPrinter(
         methodCount: 0, // number of method calls to be displayed
         printEmojis: printEmojis,
+        lineLength: 1200,
         printTime: isTime // Should each log print contain a timestamp
         ),
   );
