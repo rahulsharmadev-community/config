@@ -7,6 +7,7 @@ import 'utilities/printlog.dart';
 export 'utilities/utilities.dart';
 export 'widgets/widgets.dart';
 export 'utilities/regexp_fun.dart';
+export 'enums/enums.dart';
 part 'navigation/navigator_observer.dart';
 
 ScaffoldMessengerState get messenger => Config.messengerKey.currentState!;
