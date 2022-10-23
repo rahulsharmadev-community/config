@@ -7,6 +7,22 @@ class Schedule {
 
   const Schedule(this.name, this.start, this.end);
 
+  Schedule? formName(String name) {
+    switch (name.toLowerCase()) {
+      case 'morning':
+        return morning;
+      case 'afternoon':
+        return afternoon;
+      case 'evening':
+        return evening;
+      case 'night':
+        return night;
+      default:
+        null;
+    }
+    return null;
+  }
+
   @override
   String toString() =>
       '${start.hourOfPeriod.toString().padLeft(2, '0')}:${start.minute.toString().padLeft(2, '0')}${start.period.name} - '
