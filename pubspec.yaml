@@ -1,6 +1,6 @@
 name: config
 description: Config is just basic flutter utitliy.
-version: 0.0.02
+version: 0.0.03
 homepage: 'config'
 
 environment:
