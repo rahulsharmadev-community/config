@@ -7,7 +7,7 @@ class Schedule {
 
   const Schedule(this.name, this.start, this.end);
 
-  Schedule? formName(String name) {
+  static Schedule? formName(String name) {
     switch (name.toLowerCase()) {
       case 'morning':
         return morning;
